@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.student.musicplayer.MainActivity">
+
+    <TextView
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Grey Play"
+        android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/view1"
+        android:src="@drawable/blue"
+        />
+
+    <TextView
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgView"
+        android:layout_centerHorizontal="true"
+        android:text="Title Name"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view2"
+        android:layout_centerHorizontal="true"
+        android:text="Artist / Composer"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/view9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/view6"
+        android:text="\u2223 \u2223"
+        android:onClick="stopSong"
+        android:textSize="25sp"
+        />
+
+    <Button
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/view9"
+        android:layout_above="@id/view6"
+        android:text="\u25ba"
+        android:onClick = "playSong"
+        android:textSize="25sp"/>
+<!--Unicode for stop button is \u25a0-->
+    <Button
+        android:id="@+id/view8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/view6"
+        android:layout_toLeftOf="@id/view9"
+        android:text="\u25a0"
+        android:onClick="stopButton"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/view5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/view4"
+        android:layout_alignTop="@id/view4"
+        android:background="#ddd"
+        android:text="\u23e9"
+        android:onClick="fowardButton"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/view7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/view4"
+        android:layout_toLeftOf="@id/view8"
+        android:background="#ddd"
+        android:text="\u23ea"
+        android:onClick="rewindButton"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/view6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="#ddd"
+        android:text="View 6"
+        android:textSize="36sp"/>
+
+</RelativeLayout>
