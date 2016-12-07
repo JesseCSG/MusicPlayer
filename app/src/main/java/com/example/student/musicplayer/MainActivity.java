@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        song1 = MediaPlayer.create(this, R.raw.bassWalker);
-        song2 = MediaPlayer.create(this, R.raw.dispersionRelation);
-        song3 = MediaPlayer.create(this, R.raw.georgeStreet);
-        song4 = MediaPlayer.create(this, R.raw.inYourArms);
-        song5 = MediaPlayer.create(this, R.raw.localForecast);
-        song6 = MediaPlayer.create(this, R.raw.offToOsoka);
-        song7 = MediaPlayer.create(this, R.raw.sidewalkShuffle);
-        song8 = MediaPlayer.create(this, R.raw.spyGlass);
+        song1 = MediaPlayer.create(this, R.raw.bass-walker);
+        song2 = MediaPlayer.create(this, R.raw.dispersion-relation);
+        song3 = MediaPlayer.create(this, R.raw.george-street);
+        song4 = MediaPlayer.create(this, R.raw.in-your-arms);
+        song5 = MediaPlayer.create(this, R.raw.local-forecast);
+        song6 = MediaPlayer.create(this, R.raw.off-to-osoka);
+        song7 = MediaPlayer.create(this, R.raw.sidewalk-shuffle);
+        song8 = MediaPlayer.create(this, R.raw.spy-glass);
 
         playButton = (Button)findViewById(R.id.view4);
         pauseButton = (Button)findViewById(R.id.view9);
