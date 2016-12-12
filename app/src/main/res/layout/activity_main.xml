@@ -11,7 +11,7 @@
     tools:context="com.example.student.musicplayer.MainActivity">
 
     <TextView
-        android:id="@+id/view1"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,12 +24,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/view1"
+        android:layout_below="@id/title"
         android:src="@drawable/blue"
         />
 
     <TextView
-        android:id="@+id/view2"
+        android:id="@+id/songTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgView"
@@ -38,77 +38,97 @@
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/view3"
+        android:id="@+id/artistTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view2"
+        android:layout_below="@+id/songTitle"
         android:layout_centerHorizontal="true"
         android:text="Artist / Composer"
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/view9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/view6"
-        android:text="\u2223 \u2223"
-        android:onClick="stopSong"
-        android:textSize="25sp"
-        />
-
-    <Button
-        android:id="@+id/view4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toRightOf="@id/view9"
-        android:layout_above="@id/view6"
-        android:text="\u25ba"
-        android:onClick = "playSong"
-        android:textSize="25sp"/>
-<!--Unicode for stop button is \u25a0-->
-    <Button
-        android:id="@+id/view8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_above="@id/view6"
-        android:layout_toLeftOf="@id/view9"
-        android:text="\u25a0"
-        android:onClick="stopButton"
-        android:textSize="25sp"/>
-
-    <Button
-        android:id="@+id/view5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/view4"
-        android:layout_alignTop="@id/view4"
-        android:background="#ddd"
-        android:text="\u23e9"
-        android:onClick="fowardButton"
-        android:textSize="25sp"/>
-
-    <Button
-        android:id="@+id/view7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/view4"
-        android:layout_toLeftOf="@id/view8"
-        android:background="#ddd"
-        android:text="\u23ea"
-        android:onClick="rewindButton"
-        android:textSize="25sp"/>
-
-    <TextView
-        android:id="@+id/view6"
+        android:id="@+id/pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:text="\u2223 \u2223"
+        android:onClick="pauseSong"
+        android:textSize="25sp"
+        />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/pause"
+        android:layout_alignTop="@id/pause"
+        android:text="\u25ba"
+        android:onClick = "playSong"
+        android:textSize="25sp"/>
+<!--Unicode for stop button is \u25a0-->
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignTop="@id/pause"
+        android:layout_toLeftOf="@id/pause"
+        android:text="\u25a0"
+        android:onClick="stopSong"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/foward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/play"
+        android:layout_alignTop="@id/play"
+        android:background="#ddd"
+        android:text="F"
+        android:onClick="forwardSong"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/rewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/play"
+        android:layout_toLeftOf="@id/stop"
+        android:background="#ddd"
+        android:text="R"
+        android:onClick="rewindSong"
+        android:textSize="25sp"/>
+
+    <SeekBar
+        android:id="@+id/seeker"
+        android:layout_width="125sp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/pause"
         android:background="#ddd"
         android:text="View 6"
         android:textSize="36sp"/>
+
+    <TextView
+        android:id="@+id/currentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/stop"
+        android:layout_alignParentLeft="true"
+        android:text="0 min 0 sec"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/totalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/play"
+        android:layout_alignParentRight="true"
+        android:text="0 min 0 sec"
+        android:textSize="20sp"
+        />
 
 </RelativeLayout>
