@@ -25,7 +25,7 @@
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/title"
-        android:src="@drawable/blue"
+        android:src="@drawable/cat"
         />
 
     <TextView

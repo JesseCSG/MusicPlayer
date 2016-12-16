@@ -1,6 +1,7 @@
 package com.example.student.musicplayer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -15,16 +16,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private MediaPlayer song1;
-    private MediaPlayer song2;
-    private MediaPlayer song3;
-    private MediaPlayer song4;
-    private MediaPlayer song5;
-    private MediaPlayer song6;
-    private MediaPlayer song7;
-    private MediaPlayer song8;
+
 
     private Button playButton;
     private Button pauseButton;
@@ -43,20 +36,19 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seek;
     private int seekTime = 0;
 
+    Intent thisIntent = getIntent();
+    String songId = thisIntent.getStringExtra("songMessage");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        song1 = MediaPlayer.create(this, R.raw.bass_walker);
-        song2 = MediaPlayer.create(this, R.raw.dispersion_relation);
-        song3 = MediaPlayer.create(this, R.raw.george_street);
-        song4 = MediaPlayer.create(this, R.raw.in_your_arms);
-        song5 = MediaPlayer.create(this, R.raw.local_forecast);
-        song6 = MediaPlayer.create(this, R.raw.off_to_osoka);
-        song7 = MediaPlayer.create(this, R.raw.sidewalk_shuffle);
-        song8 = MediaPlayer.create(this, R.raw.spy_glass);
+
+
+
+        song1 =  MediaPlayer.create(this, Integer.parseInt(songId));
+
 
         playButton = (Button) findViewById(R.id.play);
         pauseButton = (Button) findViewById(R.id.pause);
@@ -67,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.songTitle);
         author = (TextView) findViewById(R.id.artistTitle);
 
-//        currentTimeMS = song2.getCurrentPosition();
-        totalTimeMS = song2.getDuration();
+        totalTimeMS = song1.getDuration();
 
         int totalMinutes = (int) (totalTimeMS / 1000 / 60);
         int totalSeconds = ((int) (totalTimeMS / 1000)) % 60;
@@ -78,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         MediaMetadataRetriever songInfo = new MediaMetadataRetriever();
 
-        Uri filepath = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.dispersion_relation);
+        Uri filepath = Uri.parse("android.resource://" + getPackageName() + "/" + songId);
         songInfo.setDataSource(this, filepath);
 
         String songTitle = songInfo.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
@@ -93,32 +84,29 @@ public class MainActivity extends AppCompatActivity {
         time.postDelayed(UpdateSongTime, 100);
 
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged (SeekBar seekBar,int progress, boolean fromUser){
+                seekTime = progress;
+            }
 
-                                          {
-                                              @Override
-                                              public void onProgressChanged (SeekBar seekBar,int progress, boolean fromUser){
-                                                seekTime = progress;
-                                              }
+            @Override
+            public void onStartTrackingTouch (SeekBar seekBar){
 
-                                              @Override
-                                              public void onStartTrackingTouch (SeekBar seekBar){
+            }
 
-                                              }
-
-                                              @Override
-                                              public void onStopTrackingTouch (SeekBar seekBar){
-                                                  song2.seekTo( seekTime);
-                                                  currentTimeMS = seekTime;
-                                              }
-                                          }
+            @Override
+            public void onStopTrackingTouch (SeekBar seekBar){
+                song1.seekTo( seekTime);
+                currentTimeMS = seekTime;
+            }
+        }
 
         );
     }
 
-
-
     public void playSong(View view) {
-        song2.start();
+        song1.start();
 
         pauseButton.setEnabled(true);
         stopButton.setEnabled(true);
@@ -132,16 +120,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pauseSong(View view) {
+        song1.pause();
+
         Toast.makeText(getApplicationContext(), "Stopping song.", Toast.LENGTH_SHORT).show();
-        song2.pause();
         stopButton.setEnabled(true);
         pauseButton.setEnabled(false);
         playButton.setEnabled(true);
     }
 
     public void stopSong(View view) {
-        song2.seekTo(0);
-        song2.pause();
+        song1.seekTo(0);
+        song1.pause();
 
         playButton.setEnabled(true);
         pauseButton.setEnabled(false);
@@ -155,16 +144,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void rewindSong(View view) {
-        song2.seekTo((int) (currentTimeMS - 5000));
+        song1.seekTo((int) (currentTimeMS - 5000));
     }
 
     public void forwardSong(View view) {
-        song2.seekTo((int) (currentTimeMS + 5000));
+        song1.seekTo((int) (currentTimeMS + 5000));
     }
 
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
-            currentTimeMS = song2.getCurrentPosition();
+            currentTimeMS = song1.getCurrentPosition();
 
             seek.setProgress((int) currentTimeMS);
 
@@ -174,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
             currentTimeView = (TextView) findViewById(R.id.currentTime);
             currentTimeView.setText(currentMinutes + " min, " + currentSeconds + " sec");
 
-            //For Rewind / Forward Buttons
             if (currentTimeMS > 5000) {
                 rewindButton.setEnabled(true);
             } else {
